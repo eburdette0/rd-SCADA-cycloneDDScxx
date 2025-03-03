@@ -240,7 +240,7 @@ GetData::~GetData()
 void GetData::start()
 {
 
-    std::cout << this << "Starting Data";
+    std::cout << this << " Starting Data" <<std::endl;
 
     for (int i = 0; i < PID_CHANNELS; i++)
     {

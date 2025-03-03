@@ -20,21 +20,13 @@ public:
             queuedefs::pidCoeffQueuedef& pidCoeffQueue, 
             queuedefs::pidCoeffUpdateQueuedef& pidCoeffUpdateQueue,
             queuedefs::pidCommandUpdateQueuedef& pidCommandUpdateQueue);
+
+    bool validateConfigurationFile(const std::string& filename);
+    
     //int subscribePIDpar();
-    //static void my_message_callback(struct mosquitto *mosq, void *userdata, const struct mosquitto_message *message);
     //void handlePIDmsg(std::string topicString, const struct mosquitto_message *message);
     std::string makepidChstring(std::string machine, int ChNo);
 
-//signals:
-
-    // // NanoTS_Namespace::Signal<void (std::tuple<uint32_t, double>)> setpointUpdate;
-    // // NanoTS_Namespace::Signal<void (std::tuple<uint32_t, double>)> manualOPUpdate;
-    // // NanoTS_Namespace::Signal<void (std::tuple<uint32_t, uint32_t>)> autoCtrlUpdate; //uint32_t ch, uint32_t autoCtrl);
-    // // NanoTS_Namespace::Signal<void (std::tuple<uint32_t, uint32_t>)> lockUpdate; //uint32_t ch, uint32_t locked);
-    // NanoTS_Namespace::Signal<void (std::tuple<uint32_t, double, double, uint32_t, uint32_t>)> controlUpdate; //uint32_t ch, double setpoint, double manOP, uint32_t auto, uint32_t lock);
-    // NanoTS_Namespace::Signal<void (std::tuple<uint32_t, std::array<double, 10>>)> coeffUpdate;   //uint32_t ch, double coeffs[10]);
-
-//public slots:
     void connect();
 
     void qstart();

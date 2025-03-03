@@ -103,6 +103,11 @@ networkData::networkData(std::string filename,
     
 
 {    //Networkdata:NetworkData body
+    
+    if (!validateConfigurationFile(filename)){
+        throw std::runtime_error("Invalid/missing configuration file for networkData");
+    }
+
 
     dds::pub::DataWriter<networkDataStructures::ChInfo> tempWriter(publisher, ChInfoTopic, dwqos, &chinfolistener, dds::core::status::StatusMask::publication_matched());
     ChInfoWriter = tempWriter;
@@ -120,11 +125,17 @@ networkData::networkData(std::string filename,
 
     rapidjson::Document document1;
     document1.Parse(content.c_str());
-    // json document1;
-    // document1 = json::parse(content);
+    if (document1.HasParseError()) {
+        std::cerr << "Error: Failed to parse JSON from file. Error offset: " << document1.GetErrorOffset() << std::endl;
+        std::exit(1);
+    }
+
     machineString = document1["MachineName"].GetString();
+
     iterationTopic = "/"+machineString+"/phys/iteration";
+
     allinfoT = "/"+machineString+"/info";
+
     if (document1["Channels"].HasMember("phys")) {
         if  (document1["Channels"]["phys"].HasMember("ai")){
             
@@ -175,9 +186,31 @@ networkData::networkData(std::string filename,
 
         
 
-    //mosquitto_m(subscriber, PIDCoeffTopic, dds::sub::qos::DataReaderQos(), &pidCoeffListener, dds::core::status::StatusMask::data_available())essage_callback_set(mosq, networkData::my_message_callback);
-
     }
+}
+
+// Static method to validate configuration file
+bool networkData::validateConfigurationFile(const std::string& filename) {
+    std::ifstream ifs(filename);
+    if (!ifs.is_open()) {
+        throw std::runtime_error("Failed to open configuration file: " + filename);
+    }
+
+    std::string content((std::istreambuf_iterator<char>(ifs)),
+                       std::istreambuf_iterator<char>());
+    ifs.close();
+
+    rapidjson::Document document;
+    if (document.Parse(content.c_str()).HasParseError()) {
+        throw std::runtime_error("Invalid JSON format in configuration file");
+    }
+
+    // Validate required fields
+    if (!document.HasMember("MachineName") || !document["MachineName"].IsString()) {
+        throw std::runtime_error("Configuration file missing MachineName field");
+    }
+
+    return true;
 }
 
 

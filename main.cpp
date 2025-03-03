@@ -2,6 +2,7 @@
 #include "hardwareInterface/getdata.h"
 #include "decimation/decimator.h"
 #include "csvIO/datasaver.hpp"
+#include "fileChecks.hpp"
 #include "networkData/networkData.h"
 #include "display/tui.hpp"
 #include "queueTemplate/queueTemplates.hpp"
@@ -43,15 +44,26 @@ queuedefs::pidCommandUpdateQueuedef  pidCommandUpdateQueue;
 blf::queue<dataStructures1::logTuple, blf::capacity<100>> logQueue;
 
 
-
 int main(int argc, char *argv[]){
 
-    if (argc <= 1) {
-        std::cout << "Please provide a filename as an argument." << std::endl;
-        return -1;
+    // if (argc <= 1) {
+    //     std::cout << "Please provide a filename as an argument." << std::endl;
+    //     return -1;
+    // }
+    // std::string filename_unused = argv[1];
+
+    const char* homeDir = std::getenv("HOME");
+    if (homeDir == nullptr || *homeDir == '\0') {
+        std::cerr << "Error: HOME environment variable not set." << std::endl;
+        std::exit(1); // Or throw an exception
     }
-    std::string filename = argv[1];
-    //std::string filename = "~/rdControllerConfigs/RigConfig.json";
+    std::string filename = std::string(homeDir) + "/rdControllerConfigs/RigConfig.json";
+
+
+    int fileRet = configFileChecks(filename);
+    if (fileRet != 0) {
+        std::exit(1);
+    }
 
     signal(SIGINT, handler);
 
