@@ -1,0 +1,48 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "GDB-Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${config:BINDIR}/${config:BINARY}",
+            "args": [],
+            "stopAtEntry": true,
+            "externalConsole": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "MIMode": "gdb",
+            "targetArchitecture": "arm64",
+            "preLaunchTask": "deploy",
+            "setupCommands": [
+                {
+                    "description": "Pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/home/eric-wsl/ueitools/ueipac-arm64-zynq_5.1.1.136_modified/sysroots/x86_64-petalinux-linux/usr/bin/aarch64-xilinx-linux/aarch64-xilinx-linux-gdb",
+            "miDebuggerServerAddress": "${config:TARGET_IP}:${config:DEBUG_PORT}",
+        },
+        {
+            "name": "GDB-Debug-local",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${config:BINDIR}/${config:BINARY}",
+            "args": ["./RigConfig.json"],
+            "stopAtEntry": true,
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "MIMode": "gdb",
+            "targetArchitecture": "x86_64",
+            "setupCommands": [
+                {
+                    "description": "Pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

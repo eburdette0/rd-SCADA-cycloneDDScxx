@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Cross GCC 9.2.0 aarch64-xilinx-linux",
+        "toolchainFile": "${workspaceFolder}/cross-toolchain.cmake",
+        "isTrusted": true
+    },
+    {
+        "name": "msys2 Cross GCC 9.2.0 aarch64-xilinx-linux",
+        "toolchainFile": "${workspaceFolder}/cross-toolchain-msys2.cmake",
+        "isTrusted": true
+    }
+]

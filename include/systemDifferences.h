@@ -1,0 +1,10 @@
+#ifndef SYSTEMDIFFERENCES_H
+#define SYSTEMDIFFERENCES_H
+
+
+/* #undef REALDATA */
+/* #undef HARDWARE_UEI */
+/* #undef HARDWARE_LABJACK */
+
+
+#endif // SYSTEMDIFFERENCES_H

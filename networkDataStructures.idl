@@ -1,0 +1,71 @@
+module networkDataStructures
+{
+    struct Msg
+  {
+    @key
+    long userID;
+    string message;
+  };
+  
+  struct ChInfo {
+    @key
+    uint32 machineID;
+    string ChInfoString;
+  };
+
+  struct BundleStruct{
+    @key
+    uint32 machineID;
+    uint64 iteration;
+    double aiBundle[8];
+    double aoBundle[8];
+    boolean roBundle[12];
+    double calcBundle[24];
+  };
+
+  struct PIDIO{
+    uint32 channel;
+    double PV;
+    double SP;
+    double OP;
+    double manOP;
+  };
+
+  struct PIDCoeff{
+    uint32 channel;
+    string controlName;
+    double kP;
+    double kI;
+    double kD;
+    double bias;
+    double outputMax;
+    double outputMin;
+    double windupMax;
+    double windupMin;
+    double deadbandMax;
+    double deadbandMin;
+    uint32 inputMap;
+    uint32 outputMap;
+    double voltsConversion;
+    uint32 controlUpdateSelector;
+  };
+
+  struct PIDControls{
+    uint32 channel;
+    double setpoint;
+    double manualOP;
+    boolean autoCtrl;
+    boolean clamped;
+  };
+
+  struct PIDState{
+    @key
+    uint32 machineID3;
+    
+    PIDIO pidIO[16];
+    PIDCoeff pidCoeffs[16];
+    PIDControls pidControls[16];
+  };
+
+  
+};

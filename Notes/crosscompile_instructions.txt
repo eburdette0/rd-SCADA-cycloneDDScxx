@@ -1,0 +1,10 @@
+https://karo-electronics.github.io/docs/software-documentation/vscode/index.html
+https://nilrt-docs.ni.com/cross_compile/hello_world.html
+
+https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html
+
+https://stackoverflow.com/questions/67563340/how-to-pass-command-line-arguments-to-cmake-in-vscode
+
+kits:
+https://vector-of-bool.github.io/docs/vscode-cmake-tools/kits.html#kits-types-toolchain
+point toolchain option to the cross.cmake file with the compiler options from above

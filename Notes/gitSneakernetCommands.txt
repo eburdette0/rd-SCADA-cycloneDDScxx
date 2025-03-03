@@ -1,0 +1,16 @@
+create a bare repo:
+#git clone --bare my_project my_project.git
+
+mkdir /path/to/repo.git
+git init --bare /path/to/repo.git
+git remote add usb /path/to/repo.git
+
+git pull origin main (or whtever branch you're working on)
+git push usb main (or whatever branch you're working on)
+
+...work on pc
+
+git pull usb main
+git push origin main
+
+create branch on usb: git branch name-of-working-branch

@@ -1,0 +1,10 @@
+#ifndef SYSTEMDIFFERENCES_H
+#define SYSTEMDIFFERENCES_H
+
+
+#cmakedefine REALDATA
+#cmakedefine HARDWARE_UEI
+#cmakedefine HARDWARE_LABJACK
+
+
+#endif // SYSTEMDIFFERENCES_H
