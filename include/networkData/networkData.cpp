@@ -7,7 +7,7 @@
 #include "PID/PID_V1.h"
 
 #include "dds/dds.hpp"
-#include "../include/DDSsources/networkDataStructures.hpp"
+#include "DDSsources/networkDataStructures.hpp"
 
 #include <stdio.h>
 #include <vector>
