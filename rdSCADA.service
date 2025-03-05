@@ -1,0 +1,23 @@
+[Unit]
+Description=SCADA service 
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/home/root/  # Replace with your project directory
+ExecStart=/usr/local/bin/rd-SCADA-cyclonedds-cxx  # Replace with the full path to your executable
+Restart=on-failure
+RestartSec=5
+
+#If using syslog
+#StandardOutput=syslog
+#StandardError=syslog
+
+# If you want to redirect stdout/stderr to files (alternative to syslog):
+StandardOutput=file:/var/log/rdSCADA.log
+StandardError=file:/var/log/rdSCADA_error.log
+
+
+[Install]
+WantedBy=multi-user.target

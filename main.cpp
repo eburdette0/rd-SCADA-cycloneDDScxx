@@ -87,7 +87,7 @@ int main(int argc, char *argv[]){
 
     networkData netIO(filename, dataNetworkQueue, pidGetQueue, pidCoeffUpdateQueue, pidCommandUpdateQueue); //already threaded
     dataSaver csv1(csvQueue);
-    displayTable tui1(displayQueue);
+    //displayTable tui1(displayQueue);
 
 
     // core and producers
@@ -99,7 +99,7 @@ int main(int argc, char *argv[]){
     csv1.start(); //~3% utilization
 
     std::cout<<std::endl;
-    tui1.start(); //~16% utilization
+    //tui1.start(); //~16% utilization
 
 
     //network comms
@@ -123,7 +123,7 @@ int main(int argc, char *argv[]){
     dec1.stop();
     dec1Fan.stop();
 
-    tui1.stop();
+    //tui1.stop();
     csv1.stop();
 
     netIO.qstop();
